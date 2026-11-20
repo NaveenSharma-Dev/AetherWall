@@ -61,4 +61,11 @@ See [SECURITY.md](SECURITY.md) for reporting security concerns.
 
 ## License
 
-No license has been added yet. A license can be added once the project owner chooses the terms for reuse.
+This project is available under the [AetherWall Community License 1.0](LICENSE).
+You may use, modify, and incorporate its code into other applications, including
+commercial applications. You may not sell AetherWall itself as a standalone
+product, including a substantially unchanged or rebranded copy. See the license
+for the full terms and the treatment of third-party components.
+
+This custom license restricts standalone resale, so the project is source
+available and is not an OSI-approved open source project.
