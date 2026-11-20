@@ -1,0 +1,33 @@
+name: Bug report
+description: Report a problem with AetherWall
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: Describe the problem and what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      placeholder: 1. Open AetherWall…
+    validations:
+      required: true
+  - type: input
+    id: windows
+    attributes:
+      label: Windows version
+      placeholder: For example, Windows 11 24H2
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Error details
+      description: Remove personal information and secrets before posting logs.
+    validations:
+      required: false
