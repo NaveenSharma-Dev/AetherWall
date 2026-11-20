@@ -1,0 +1,181 @@
+﻿<Window x:Class="AetherWall.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="AetherWall"
+        Icon="/Assets/aetherwall.ico"
+        MinWidth="850"
+        MinHeight="560"
+        Background="{DynamicResource WindowBackgroundBrush}"
+        Foreground="{DynamicResource PrimaryTextBrush}"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanResize"
+        UseLayoutRounding="True"
+        SnapsToDevicePixels="True">
+    
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Sidebar -->
+        <Border Grid.Column="0"
+                Background="{DynamicResource SidebarBackgroundBrush}"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="0,0,1,0">
+
+            <Grid Margin="16">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Logo -->
+                <StackPanel Orientation="Horizontal">
+
+                    <Image Width="38"
+                           Height="38"
+                           Source="/Assets/aetherwall-icon.png"
+                           Stretch="Uniform"/>
+
+                    <StackPanel Margin="12,0,0,0"
+                                VerticalAlignment="Center">
+
+                        <TextBlock Text="AetherWall"
+                                   FontSize="17"
+                                   FontWeight="SemiBold"/>
+
+                        <TextBlock Text="Animated Wallpapers"
+                                   FontSize="10"
+                                   Foreground="{DynamicResource MutedTextBrush}"/>
+                    </StackPanel>
+
+                </StackPanel>
+
+                <!-- Navigation -->
+                <StackPanel Grid.Row="2">
+
+                    <TextBlock Text="WORKSPACE"
+                               FontSize="10"
+                               FontWeight="SemiBold"
+                               Foreground="{DynamicResource MutedTextBrush}"
+                               Margin="8,0,0,8"/>
+
+                    <Button Content="Home"
+                            Command="{Binding ShowHomeCommand}"
+                            Style="{StaticResource NavButtonStyle}"
+                            Margin="0,2"/>
+
+                    <Button Content="Library"
+                            Command="{Binding ShowLibraryCommand}"
+                            Style="{StaticResource NavButtonStyle}"
+                            Margin="0,2"/>
+
+                    <Button Content="Favorites"
+                            Command="{Binding ShowFavoritesCommand}"
+                            Style="{StaticResource NavButtonStyle}"
+                            Margin="0,2"/>
+
+                </StackPanel>
+
+                <!-- Bottom -->
+                <StackPanel Grid.Row="4">
+
+                    <Button Content="Settings"
+                            Command="{Binding ShowSettingsCommand}"
+                            Style="{StaticResource NavButtonStyle}"
+                            Margin="0,2"/>
+
+                    <TextBlock Text="AetherWall 2.0"
+                               FontSize="10"
+                               Foreground="{DynamicResource MutedTextBrush}"
+                               Margin="14,12,0,0"/>
+
+                </StackPanel>
+
+            </Grid>
+
+        </Border>
+
+
+        <!-- Main Content -->
+        <Grid Grid.Column="1"
+              Margin="32">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="24"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Header -->
+            <Grid>
+
+                <StackPanel>
+                    <TextBlock Text="{Binding CurrentPage}"
+                               FontSize="30"
+                               FontWeight="SemiBold"/>
+
+                    <TextBlock Text="Manage your animated desktop experience"
+                               FontSize="13"
+                               Foreground="{DynamicResource SecondaryTextBrush}"
+                               Margin="0,5,0,0"/>
+                </StackPanel>
+
+                <Button Content="+ Add Wallpaper"
+                        Command="{Binding AddWallpaperCommand}"
+                        Style="{StaticResource PrimaryButtonStyle}"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"/>
+
+            </Grid>
+
+            <!-- Page Content -->
+            <ContentControl Grid.Row="2"
+                Content="{Binding CurrentView}"/>
+
+
+        </Grid>
+
+        <Border x:Name="StartupOverlay"
+                Grid.ColumnSpan="2"
+                Panel.ZIndex="10"
+                Background="{DynamicResource WindowBackgroundBrush}">
+            <StackPanel HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Width="300">
+                <Image Source="/Assets/aetherwall-icon.png"
+                       Width="72"
+                       Height="72"
+                       HorizontalAlignment="Center"
+                       Stretch="Uniform"/>
+                <TextBlock Text="AetherWall"
+                           FontSize="24"
+                           FontWeight="SemiBold"
+                           HorizontalAlignment="Center"
+                           Margin="0,16,0,6"/>
+                <TextBlock x:Name="StartupStatusText"
+                           Text="Loading your library…"
+                           FontSize="13"
+                           Foreground="{DynamicResource SecondaryTextBrush}"
+                           TextAlignment="Center"
+                           TextWrapping="Wrap"
+                           Margin="0,0,0,18"/>
+                <ProgressBar Height="4"
+                             IsIndeterminate="True"
+                             Foreground="{DynamicResource AccentBrush}"
+                             Background="{DynamicResource CardBackgroundBrush}"/>
+            </StackPanel>
+        </Border>
+
+    </Grid>
+
+</Window>

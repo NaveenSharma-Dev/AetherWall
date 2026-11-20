@@ -1,0 +1,34 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Backgrounds -->
+    <SolidColorBrush x:Key="WindowBackgroundBrush" Color="#0D0F12"/>
+    <SolidColorBrush x:Key="SidebarBackgroundBrush" Color="#111418"/>
+    <SolidColorBrush x:Key="CardBackgroundBrush" Color="#171A1F"/>
+    <SolidColorBrush x:Key="CardHoverBrush" Color="#1D2229"/>
+    <SolidColorBrush x:Key="DisplayCanvasBackgroundBrush" Color="#101216"/>
+    <SolidColorBrush x:Key="DisplayTileBackgroundBrush" Color="#292D33"/>
+    <SolidColorBrush x:Key="DisplayTileBorderBrush" Color="#D2D5DA"/>
+    <SolidColorBrush x:Key="DisplaySelectedBrush" Color="#087FD7"/>
+    <SolidColorBrush x:Key="DisplaySelectedBorderBrush" Color="#71C4FF"/>
+    <SolidColorBrush x:Key="DisplayTileHoverBorderBrush" Color="#FFFFFF"/>
+
+    <!-- Borders -->
+    <SolidColorBrush x:Key="BorderBrush" Color="#282D35"/>
+
+    <!-- Text -->
+    <SolidColorBrush x:Key="PrimaryTextBrush" Color="#F2F4F7"/>
+    <SolidColorBrush x:Key="SecondaryTextBrush" Color="#9AA2AE"/>
+    <SolidColorBrush x:Key="MutedTextBrush" Color="#68717D"/>
+
+    <!-- Accent -->
+    <SolidColorBrush x:Key="AccentBrush" Color="#7C5CFF"/>
+    <SolidColorBrush x:Key="AccentHoverBrush" Color="#9278FF"/>
+
+    <!-- Status -->
+    <SolidColorBrush x:Key="SuccessBrush" Color="#45D483"/>
+    <SolidColorBrush x:Key="WarningBrush" Color="#F2B84B"/>
+    <SolidColorBrush x:Key="DangerBrush" Color="#F05D6C"/>
+
+</ResourceDictionary>
