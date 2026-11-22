@@ -4,6 +4,16 @@
 
 AetherWall is a Windows desktop app for managing animated video wallpapers across one or more monitors.
 
+## Screenshots
+
+### Home
+
+![AetherWall Home screen](docs/screenshots/home.png)
+
+### Library
+
+![AetherWall Library screen](docs/screenshots/library.png)
+
 ## Features
 
 - Import and organize video wallpapers in a searchable, sortable library.
