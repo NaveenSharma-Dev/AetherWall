@@ -18,7 +18,8 @@ Supported video formats: MP4, MKV, WebM, AVI, MOV, WMV, FLV, M4V, MPEG, MPG, and
 
 ## Requirements
 
-- Windows with the .NET 10 Desktop Runtime.
+- Windows 10 or later, 64-bit.
+- The installer includes the .NET runtime; users do not need to install it separately.
 - For building from source: the .NET 10 SDK or Visual Studio with the .NET desktop development workload.
 
 The application uses WPF, LibVLCSharp, and the Windows LibVLC runtime.
@@ -35,6 +36,20 @@ dotnet run --project AetherWall/AetherWall.csproj
 
 In Visual Studio, open `AetherWall.slnx`, select the AetherWall project, and run it for Windows.
 
+## Download and install
+
+Download [AetherWall-Setup.exe](https://github.com/naveenkr82/AetherWall/releases/latest/download/AetherWall-Setup.exe) from the latest GitHub Release. Run the installer, choose an installation folder, and optionally create a desktop shortcut. The installer adds a Start menu shortcut and an uninstall entry for the current Windows user. Uninstalling keeps imported wallpapers and settings.
+
+## Build the installer
+
+On Windows with the .NET 10 SDK installed, run:
+
+```powershell
+.\installer\build-installer.ps1
+```
+
+The self-contained x64 installer is created at `artifacts/setup/AetherWall-Setup.exe`. Build outputs are kept out of Git.
+
 ## Wallpaper and settings locations
 
 - Imported wallpapers: `%LOCALAPPDATA%\AetherWall\Wallpapers`
@@ -50,6 +65,7 @@ In Visual Studio, open `AetherWall.slnx`, select the AetherWall project, and run
 | `AetherWall/Services` | Playback, library, metadata, and settings services |
 | `AetherWall/Native` | Windows monitor and desktop integration |
 | `AetherWall/Themes` | Dark and light theme resources |
+| `installer` | Setup app, uninstaller, and installer build script |
 
 ## Contributing
 

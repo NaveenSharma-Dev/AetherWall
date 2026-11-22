@@ -1,0 +1,18 @@
+AetherWall includes third-party software that is not covered by the AetherWall Community License.
+
+LibVLCSharp.WPF 3.10.1 and VideoLAN.LibVLC.Windows 3.0.23.1
+License: GNU Lesser General Public License 2.1 or later (LGPL-2.1-or-later).
+License text: https://licenses.nuget.org/LGPL-2.1-or-later
+Source: https://code.videolan.org/videolan/LibVLCSharp
+Source: https://code.videolan.org/videolan/libvlc-nuget
+
+taglib-sharp-netstandard2.0 2.1.0
+License: GNU Lesser General Public License 2.1.
+License text and source: https://github.com/mono/taglib-sharp
+
+The self-contained installer also includes the Microsoft .NET runtime. Its
+terms and notices are available at https://dotnet.microsoft.com/ and
+https://github.com/dotnet/runtime/blob/main/LICENSE.TXT.
+
+VLC components and codecs may have additional notices and license terms.
+See the VideoLAN source and license information linked above.

@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationIcon>..\AetherWall\Assets\aetherwall.ico</ApplicationIcon>
+    <AssemblyName>AetherWall-Setup</AssemblyName>
+    <Version>2.0.0</Version>
+  </PropertyGroup>
+  <PropertyGroup>
+    <WallpaperExePath Condition="'$(WallpaperExePath)' == ''">$(MSBuildThisFileDirectory)..\artifacts\app\AetherWall.exe</WallpaperExePath>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(WallpaperExePath)" LogicalName="AetherWall.Setup.Payload.exe" />
+    <EmbeddedResource Include="Uninstall-AetherWall.ps1" LogicalName="AetherWall.Setup.Uninstaller.ps1" />
+    <EmbeddedResource Include="THIRD-PARTY-NOTICES.txt" LogicalName="AetherWall.Setup.ThirdPartyNotices.txt" />
+  </ItemGroup>
+</Project>
