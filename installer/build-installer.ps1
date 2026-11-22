@@ -1,9 +1,14 @@
 param(
     [ValidateSet('Release', 'Debug')]
-    [string]$Configuration = 'Release'
+    [string]$Configuration = 'Release',
+    [string]$Version = ''
 )
 
 $ErrorActionPreference = 'Stop'
+if ($Version -and $Version -notmatch '^\d+\.\d+\.\d+(-[0-9A-Za-z.-]+)?$') {
+    throw "Version '$Version' is invalid. Use a version such as 2.1.0 or 2.1.0-rc.1."
+}
+
 $repositoryRoot = Split-Path -Parent $PSScriptRoot
 $artifactsDirectory = Join-Path $repositoryRoot 'artifacts'
 $appOutputDirectory = Join-Path $artifactsDirectory 'app'
@@ -25,6 +30,9 @@ $appPublishArgs = @(
     '-p:IncludeAllContentForSelfExtract=true',
     '-o', $appOutputDirectory
 )
+if ($Version) {
+    $appPublishArgs += "-p:Version=$Version"
+}
 & dotnet @appPublishArgs
 if ($LASTEXITCODE -ne 0) {
     throw "Publishing the AetherWall application failed with exit code $LASTEXITCODE."
@@ -47,6 +55,9 @@ $setupPublishArgs = @(
     "-p:WallpaperExePath=$appPayload",
     '-o', $setupOutputDirectory
 )
+if ($Version) {
+    $setupPublishArgs += "-p:Version=$Version"
+}
 & dotnet @setupPublishArgs
 if ($LASTEXITCODE -ne 0) {
     throw "Publishing the AetherWall installer failed with exit code $LASTEXITCODE."

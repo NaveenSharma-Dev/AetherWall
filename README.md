@@ -50,6 +50,19 @@ On Windows with the .NET 10 SDK installed, run:
 
 The self-contained x64 installer is created at `artifacts/setup/AetherWall-Setup.exe`. Build outputs are kept out of Git.
 
+## Publish a release
+
+Push a version tag after the release changes are on `main`. GitHub Actions builds the self-contained installer on Windows and publishes it with generated release notes:
+
+```powershell
+git switch main
+git pull
+git tag v2.1.0
+git push origin v2.1.0
+```
+
+Use the next version number for each release. Tags may include a prerelease suffix, such as `v2.1.0-rc.1`.
+
 ## Wallpaper and settings locations
 
 - Imported wallpapers: `%LOCALAPPDATA%\AetherWall\Wallpapers`
