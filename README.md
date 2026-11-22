@@ -27,7 +27,7 @@ The application uses WPF, LibVLCSharp, and the Windows LibVLC runtime.
 ## Build and run
 
 ```powershell
-git clone https://github.com/naveenkr82/AetherWall.git
+git clone https://github.com/NaveenSharma-Dev/AetherWall.git
 cd AetherWall
 dotnet restore AetherWall.slnx
 dotnet build AetherWall.slnx -c Release
@@ -38,7 +38,7 @@ In Visual Studio, open `AetherWall.slnx`, select the AetherWall project, and run
 
 ## Download and install
 
-Download [AetherWall-Setup.exe](https://github.com/naveenkr82/AetherWall/releases/latest/download/AetherWall-Setup.exe) from the latest GitHub Release. Run the installer, choose an installation folder, and optionally create a desktop shortcut. The installer adds a Start menu shortcut and an uninstall entry for the current Windows user. Uninstalling keeps imported wallpapers and settings.
+Download [AetherWall-Setup.exe](https://github.com/NaveenSharma-Dev/AetherWall/releases/latest/download/AetherWall-Setup.exe) from the latest GitHub Release. Run the installer, choose an installation folder, and optionally create a desktop shortcut. The installer adds a Start menu shortcut and an uninstall entry for the current Windows user. Uninstalling keeps imported wallpapers and settings.
 
 ## Build the installer
 
