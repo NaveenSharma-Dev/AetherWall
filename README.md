@@ -84,6 +84,9 @@ Use the next version number for each release. Tags may include a prerelease suff
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the local build and pull request guidelines.
 
+- [Report a bug](https://github.com/NaveenSharma-Dev/AetherWall/issues/new?template=bug_report.yml)
+- [Request a feature](https://github.com/NaveenSharma-Dev/AetherWall/issues/new?template=feature_request.yml)
+
 ## Security
 
 See [SECURITY.md](SECURITY.md) for reporting security concerns.
