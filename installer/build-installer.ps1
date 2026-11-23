@@ -28,6 +28,8 @@ $appPublishArgs = @(
     '-p:EnableCompressionInSingleFile=true',
     '-p:IncludeNativeLibrariesForSelfExtract=true',
     '-p:IncludeAllContentForSelfExtract=true',
+    '-p:VlcWindowsX86Enabled=false',
+    '-p:VlcWindowsArm64Enabled=false',
     '-o', $appOutputDirectory
 )
 if ($Version) {
@@ -51,7 +53,6 @@ $setupPublishArgs = @(
     '-p:PublishSingleFile=true',
     '-p:EnableCompressionInSingleFile=true',
     '-p:IncludeNativeLibrariesForSelfExtract=true',
-    '-p:IncludeAllContentForSelfExtract=true',
     "-p:WallpaperExePath=$appPayload",
     '-o', $setupOutputDirectory
 )
