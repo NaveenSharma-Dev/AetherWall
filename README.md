@@ -28,7 +28,7 @@ Supported video formats: MP4, MKV, WebM, AVI, MOV, WMV, FLV, M4V, MPEG, MPG, and
 
 ## Requirements
 
-- Windows 10 or later, 64-bit.
+- Windows 10, 64-bit. Windows 11 live wallpaper playback is currently not working and is not supported yet.
 - The installer includes the .NET runtime; users do not need to install it separately.
 - For building from source: the .NET 10 SDK or Visual Studio with the .NET desktop development workload.
 
