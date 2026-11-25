@@ -20,6 +20,7 @@ namespace AetherWall.Native
 
         private const uint SWP_NOACTIVATE = 0x0010;
         private const uint SWP_SHOWWINDOW = 0x0040;
+        private const uint SWP_FRAMECHANGED = 0x0020;
 
         private const uint RDW_INVALIDATE = 0x0001;
         private const uint RDW_ERASE = 0x0004;
@@ -28,6 +29,9 @@ namespace AetherWall.Native
 
         private const int SW_SHOWNOACTIVATE = 4;
         private const int SW_HIDE = 0;
+        private const int GWL_STYLE = -16;
+        private const long WS_CHILD = 0x40000000L;
+        private const long WS_POPUP = 0x80000000L;
         private const uint SPI_SETDESKWALLPAPER = 0x0014;
         private const int SM_CXSCREEN = 0;
         private const int SM_CYSCREEN = 1;
@@ -129,6 +133,12 @@ namespace AetherWall.Native
         [DllImport("user32.dll")]
         private static extern IntPtr GetParent(IntPtr hWnd);
 
+        [DllImport("user32.dll", EntryPoint = "GetWindowLongPtrW", SetLastError = true)]
+        private static extern IntPtr GetWindowLongPtr(IntPtr hWnd, int index);
+
+        [DllImport("user32.dll", EntryPoint = "SetWindowLongPtrW", SetLastError = true)]
+        private static extern IntPtr SetWindowLongPtr(IntPtr hWnd, int index, IntPtr value);
+
         [DllImport("user32.dll")]
         private static extern bool SetWindowPos(
             IntPtr hWnd,
@@ -215,15 +225,30 @@ namespace AetherWall.Native
                 ? IntPtr.Zero
                 : GetParent(windowHandle);
 
+        public static IntPtr GetWindowStyle(IntPtr windowHandle) =>
+            windowHandle == IntPtr.Zero
+                ? IntPtr.Zero
+                : GetWindowLongPtr(windowHandle, GWL_STYLE);
+
         public static void DetachFromDesktop(
             IntPtr wallpaperHandle,
-            IntPtr originalParent)
+            IntPtr originalParent,
+            IntPtr originalStyle)
         {
             if (wallpaperHandle == IntPtr.Zero)
                 return;
 
             ShowWindow(wallpaperHandle, SW_HIDE);
             SetParent(wallpaperHandle, originalParent);
+            SetWindowLongPtr(wallpaperHandle, GWL_STYLE, originalStyle);
+            SetWindowPos(
+                wallpaperHandle,
+                IntPtr.Zero,
+                0,
+                0,
+                0,
+                0,
+                SWP_NOACTIVATE | SWP_FRAMECHANGED);
         }
 
         public static IntPtr AttachToDesktop(
@@ -252,11 +277,37 @@ namespace AetherWall.Native
                 FindWorkerWindow(monitor);
 
             if (workerW == IntPtr.Zero)
+            {
+                Services.StartupLogService.WriteDiagnostic(
+                    $"Could not locate the Windows desktop host for {monitor.DeviceName} ({monitor.Width}x{monitor.Height}).");
                 return IntPtr.Zero;
+            }
 
+            IntPtr originalStyle = GetWindowLongPtr(wallpaperHandle, GWL_STYLE);
+            long childStyle = (originalStyle.ToInt64() & ~WS_POPUP) | WS_CHILD;
+            SetWindowLongPtr(
+                wallpaperHandle,
+                GWL_STYLE,
+                new IntPtr(childStyle));
             SetParent(
                 wallpaperHandle,
                 workerW);
+
+            SetWindowPos(
+                wallpaperHandle,
+                IntPtr.Zero,
+                0,
+                0,
+                0,
+                0,
+                SWP_NOACTIVATE | SWP_FRAMECHANGED);
+
+            if (GetParent(wallpaperHandle) != workerW)
+            {
+                Services.StartupLogService.WriteDiagnostic(
+                    $"Windows rejected attaching the wallpaper window to the desktop host for {monitor.DeviceName}.");
+                return IntPtr.Zero;
+            }
 
             return workerW;
         }

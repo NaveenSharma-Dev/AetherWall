@@ -13,6 +13,7 @@ namespace AetherWall.Views
         private IntPtr _windowHandle;
         private IntPtr _workerW;
         private IntPtr _originalParent;
+        private IntPtr _originalStyle;
         private bool _isDetached;
         private AetherWall.Models.WallpaperDisplayMode _displayMode;
         private readonly MonitorBounds _monitor;
@@ -47,6 +48,8 @@ namespace AetherWall.Views
 
             _originalParent =
                 WallpaperNative.GetWindowParent(_windowHandle);
+            _originalStyle =
+                WallpaperNative.GetWindowStyle(_windowHandle);
 
             _workerW =
                 WallpaperNative.AttachToDesktop(
@@ -56,7 +59,11 @@ namespace AetherWall.Views
             _isDetached = false;
 
             if (_workerW == IntPtr.Zero)
+            {
+                StartupLogService.WriteDiagnostic(
+                    $"Wallpaper window failed to attach to the desktop for {_monitor.DeviceName} ({_monitor.Width}x{_monitor.Height}).");
                 return;
+            }
 
             WallpaperNative.SetBounds(
                 _windowHandle,
@@ -80,7 +87,8 @@ namespace AetherWall.Views
             {
                 WallpaperNative.DetachFromDesktop(
                     _windowHandle,
-                    _originalParent);
+                    _originalParent,
+                    _originalStyle);
             }
 
             _isDetached = true;
