@@ -28,8 +28,7 @@ Supported video formats: MP4, MKV, WebM, AVI, MOV, WMV, FLV, M4V, MPEG, MPG, and
 
 ## Requirements
 
-- Windows 10, 64-bit, for the stable release.
-- A Windows 11 preview installer is available as a prerelease; wallpaper playback still needs testing on Windows 11.
+- Windows 10, 64-bit. Windows 11 live wallpaper playback is currently not working and is not supported yet.
 - The installer includes the .NET runtime; users do not need to install it separately.
 - For building from source: the .NET 10 SDK or Visual Studio with the .NET desktop development workload.
 
@@ -49,7 +48,7 @@ In Visual Studio, open `AetherWall.slnx`, select the AetherWall project, and run
 
 ## Download and install
 
-For Windows 10, download [AetherWall-Setup.exe](https://github.com/NaveenSharma-Dev/AetherWall/releases/latest/download/AetherWall-Setup.exe) from the latest stable GitHub Release. For Windows 11 testing, see the [Windows 11 preview prerelease](https://github.com/NaveenSharma-Dev/AetherWall/releases/tag/v2.1.2-rc.1). Run the installer, choose an installation folder, and optionally create a desktop shortcut. The installer adds a Start menu shortcut and an uninstall entry for the current Windows user. Uninstalling keeps imported wallpapers and settings.
+Download [AetherWall-Setup.exe](https://github.com/NaveenSharma-Dev/AetherWall/releases/latest/download/AetherWall-Setup.exe) from the latest GitHub Release. Run the installer, choose an installation folder, and optionally create a desktop shortcut. The installer adds a Start menu shortcut and an uninstall entry for the current Windows user. Uninstalling keeps imported wallpapers and settings.
 
 ## Build the installer
 

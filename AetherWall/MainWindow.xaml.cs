@@ -1,7 +1,5 @@
 ﻿using AetherWall.ViewModels;
 using System;
-using System.Diagnostics;
-using System.IO;
 using System.Windows;
 
 namespace AetherWall
@@ -10,7 +8,6 @@ namespace AetherWall
     {
         private readonly AetherWall.Models.AppSettings _settings;
         private AetherWall.Services.SystemTrayService? _systemTrayService;
-        private string? _startupLogPath;
         private bool _exitRequested;
 
         public MainWindow()
@@ -48,43 +45,10 @@ namespace AetherWall
             }
             catch (Exception ex)
             {
-                _startupLogPath =
-                    AetherWall.Services.StartupLogService.WriteFailure(ex);
-
-                StartupProgressBar.Visibility = Visibility.Collapsed;
-                if (_startupLogPath is not null)
-                {
-                    StartupStatusText.Text =
-                        "AetherWall couldn't start. Open the local startup log for details.";
-                    OpenStartupLogButton.Visibility = Visibility.Visible;
-                }
-                else
-                {
-                    StartupStatusText.Text =
-                        "AetherWall couldn't start, and its diagnostic log couldn't be saved.";
-                }
-            }
-        }
-
-        private void OpenStartupLogButton_Click(
-            object sender,
-            RoutedEventArgs e)
-        {
-            if (_startupLogPath is null)
-                return;
-
-            try
-            {
-                Process.Start(new ProcessStartInfo(_startupLogPath)
-                {
-                    UseShellExecute = true
-                });
-            }
-            catch (Exception ex)
-            {
+                System.Diagnostics.Debug.WriteLine(
+                    $"[AetherWall] Startup failed: {ex}");
                 StartupStatusText.Text =
-                    $"Couldn't open the log. Find it here: {Path.GetDirectoryName(_startupLogPath)}";
-                Debug.WriteLine($"[AetherWall] Could not open startup log: {ex}");
+                    "AetherWall could not finish starting. Restart the app to try again.";
             }
         }
 

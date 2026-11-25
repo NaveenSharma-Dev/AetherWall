@@ -169,18 +169,10 @@
                            TextAlignment="Center"
                            TextWrapping="Wrap"
                            Margin="0,0,0,18"/>
-                <ProgressBar x:Name="StartupProgressBar"
-                             Height="4"
+                <ProgressBar Height="4"
                              IsIndeterminate="True"
                              Foreground="{DynamicResource AccentBrush}"
                              Background="{DynamicResource CardBackgroundBrush}"/>
-                <Button x:Name="OpenStartupLogButton"
-                        Content="Open startup log"
-                        Visibility="Collapsed"
-                        Style="{StaticResource PrimaryButtonStyle}"
-                        HorizontalAlignment="Center"
-                        Margin="0,0,0,12"
-                        Click="OpenStartupLogButton_Click"/>
             </StackPanel>
         </Border>
 

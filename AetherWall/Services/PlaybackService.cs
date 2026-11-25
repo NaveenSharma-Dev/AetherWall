@@ -88,8 +88,6 @@ namespace AetherWall.Services
                 OnMediaEnded;
             _mediaPlayer.Playing +=
                 OnMediaPlaying;
-            _mediaPlayer.EncounteredError +=
-                OnMediaError;
         }
 
         public void Play(string filePath)
@@ -148,11 +146,7 @@ namespace AetherWall.Services
 
             _mediaPlayer.Media = media;
 
-            if (!_mediaPlayer.Play())
-            {
-                StartupLogService.WriteDiagnostic(
-                    $"LibVLC could not start playback for '{filePath}'.");
-            }
+            _mediaPlayer.Play();
         }
 
         public void Pause()
@@ -294,12 +288,6 @@ namespace AetherWall.Services
             OnPlaybackInfoChanged();
         }
 
-        private void OnMediaError(object? sender, EventArgs e)
-        {
-            StartupLogService.WriteDiagnostic(
-                $"LibVLC reported a playback error for '{_currentFilePath ?? "unknown media"}'.");
-        }
-
         private void OnPlaybackInfoChanged()
         {
             PlaybackInfoChanged?.Invoke(this, EventArgs.Empty);
@@ -342,8 +330,6 @@ namespace AetherWall.Services
                 OnMediaEnded;
             _mediaPlayer.Playing -=
                 OnMediaPlaying;
-            _mediaPlayer.EncounteredError -=
-                OnMediaError;
 
             _mediaPlayer.Stop();
 

@@ -37,13 +37,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           $tag = $env:GITHUB_REF_NAME
-          $releaseArgs = @(
-            'release', 'create', $tag, 'artifacts/setup/AetherWall-Setup.exe',
-            '--title', "AetherWall $tag",
-            '--generate-notes',
-            '--verify-tag'
-          )
-          if ($tag -match '-') {
-            $releaseArgs += '--prerelease'
-          }
-          gh @releaseArgs
+          gh release create $tag artifacts/setup/AetherWall-Setup.exe `
+            --title "AetherWall $tag" `
+            --generate-notes `
+            --verify-tag
